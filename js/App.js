@@ -7,7 +7,22 @@ const loadWeather = (city) => {
         .then(data => disolayTeamperatur(data))
 }
 const disolayTeamperatur = teamPerture => {
-    const containTeamperture = document.getElementById('teamperture');
-    containTeamperture.innerText = teamPerture.main.temp;
+    dispalygetID('teamperture', teamPerture.main.temp);
+    dispalygetID('condition', teamPerture.weather[0].main)
+    console.log(teamPerture);
+
 }
-loadWeather('Dhaka');
+const dispalygetID = (id, text) => {
+    const containTeamperture = document.getElementById(id);
+    containTeamperture.innerText = text;
+}
+
+
+
+document.getElementById('btn-field').addEventListener('click', function () {
+    const inputField = document.getElementById('input-field');
+    const inputText = inputField.value;
+    document.getElementById('city').innerText = inputText;
+    loadWeather(inputText);
+    inputField.value = '';
+})
